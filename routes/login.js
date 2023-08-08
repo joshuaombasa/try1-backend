@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const mysql = require('mysql2/promise')
 const bcrypt = require('bcrypt')
+const JWT = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator')
 
 const dbConfig = {
@@ -10,6 +11,8 @@ const dbConfig = {
     password: '',
     database: 'try1'
 }
+
+const SECRET_KEY = 'Joe12334'
 
 router.post('/', [
     check("email", "Please provide a valid email").isEmail(),
@@ -43,9 +46,11 @@ router.post('/', [
         const isMatch = await bcrypt.compare(password, hashedPassword);
 
         if (isMatch) {
-            res.json({ message: "Login successful" })
+            const userId = rows[0].id
+            const token = JWT.sign({userId : userId}, SECRET_KEY, {expiresIn: '1h'})
+            res.json({ message: "Login successful", token : token })
         } if (!isMatch) {
-            res.status(401).json({error : [{ "message": "Incorrect credentials" }]})
+            res.status(401).json({error : [{ "message": "Invalid credentials" }]})
         }
     } catch (error) {
         return res.status(500).json({error : [{ "message": 'An error occurred during login.' }]})
