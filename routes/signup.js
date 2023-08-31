@@ -34,7 +34,7 @@ router.post('/', [
 
         if (rows.length > 0) {
             connection.end()
-            return res.status(400).json({error: [{" message": "User already exists" }]})
+            return res.status(400).json({error:  "User already exists" })
         }
 
         // hash the password before adding it to the database
@@ -53,7 +53,7 @@ router.post('/', [
         res.status(200).json({ message: "Signup successful" })
 
     } catch (error) {
-        res.status(400).json({error : [{" message": error }]})
+        res.status(400).json({error :  error })
     }
 
 })
