@@ -37,7 +37,7 @@ router.post('/', [
         connection.end()
 
         if (rows.length === 0) {
-            res.status(401).json({error : [{ "message": 'User not found' }]})
+            res.status(401).json({error : 'User not found' })
         }
 
         const hashedPassword = rows[0].user_password
