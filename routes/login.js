@@ -12,7 +12,7 @@ const dbConfig = {
     database: 'try1'
 }
 
-const SECRET_KEY = 'Joe12334'
+const SECRET_KEY = '4f712y98du8320jcf'
 
 router.post('/', [
     check("email", "Please provide a valid email").isEmail(),
