@@ -41,10 +41,8 @@ router.post('/', [
         }
 
         const hashedPassword = rows[0].user_password
-
         // Compare the entered password with the hashed password
-        const isMatch = await bcrypt.compare(password, hashedPassword);
-
+        const isMatch = await bcrypt.compare(password, hashedPassword)
         if (isMatch) {
             const userId = rows[0].id
             const token = JWT.sign({userId : userId}, SECRET_KEY, {expiresIn: '1h'})
@@ -53,7 +51,7 @@ router.post('/', [
             res.status(401).json({error : [{ "message": "Invalid credentials" }]})
         }
     } catch (error) {
-        return res.status(500).json({error : [{ "message": 'An error occurred during login.' }]})
+        return res.status(500).json({error : error})
     }
 
 
