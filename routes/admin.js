@@ -24,7 +24,7 @@ router.get('/', auth, async (req, res) => {
 
         res.status(200).json({user : rows[0]})
     } catch(error) {
-        return res.status(400).json({error : [{"message": error}]})
+        return res.status(400).json({error :  error})
     }
     
 })
