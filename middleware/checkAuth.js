@@ -1,10 +1,10 @@
 const JWT = require('jsonwebtoken')
-const SECRET_KEY = 'Joe12334'
+const SECRET_KEY = '4f712y98du8320jcf'
 
 module.exports = async (req, res, next) => {
     const token = req.header('Authorization')
     if(!token) {
-        return res.status(400).json({error: [{'message': "No token found"}]})
+        return res.status(400).json({error: error})
     }
 
    try {
