@@ -19,7 +19,7 @@ router.get('/', auth, async (req, res) => {
         const connection = await mysql.createConnection(dbConfig)
         const [rows] = await connection.query(
             getUserSQL,
-            [userId]
+            [parseInt(userId)]
         )
 
         res.status(200).json({user : rows[0]})
