@@ -1,4 +1,6 @@
 const JWT = require('jsonwebtoken')
+
+
 const SECRET_KEY = '4f712y98du8320jcf'
 
 module.exports = async (req, res, next) => {
